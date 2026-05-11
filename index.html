@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>出門前的小叮嚀：空氣品質檢查專案</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sky-blue: #a2d2ff;
+            --grass-green: #b7e4c7;
+            --cloud-white: #ffffff;
+            --accent-pink: #ffafcc;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+            background-color: var(--sky-blue);
+        }
+
+        .special-font {
+            font-family: 'ZCOOL KuaiLe', cursive;
+        }
+
+        /* 戶外動畫背景 */
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .cloud {
+            position: absolute;
+            background: var(--cloud-white);
+            border-radius: 50px;
+            opacity: 0.8;
+            animation: moveClouds linear infinite;
+        }
+
+        .cloud::after, .cloud::before {
+            content: '';
+            position: absolute;
+            background: var(--cloud-white);
+            border-radius: 50%;
+        }
+
+        .cloud-1 { width: 120px; height: 40px; top: 10%; left: -150px; animation-duration: 25s; }
+        .cloud-1::after { width: 50px; height: 50px; top: -20px; left: 15px; }
+        .cloud-1::before { width: 70px; height: 70px; top: -35px; left: 40px; }
+
+        .cloud-2 { width: 100px; height: 30px; top: 25%; left: -120px; animation-duration: 35s; animation-delay: 5s; }
+        .cloud-2::after { width: 40px; height: 40px; top: -15px; left: 10px; }
+        .cloud-2::before { width: 50px; height: 50px; top: -25px; left: 35px; }
+
+        .cloud-3 { width: 150px; height: 50px; top: 15%; left: -200px; animation-duration: 45s; animation-delay: 2s; }
+        .cloud-3::after { width: 60px; height: 60px; top: -25px; left: 20px; }
+        .cloud-3::before { width: 80px; height: 80px; top: -40px; left: 55px; }
+
+        @keyframes moveClouds {
+            from { transform: translateX(0); }
+            to { transform: translateX(calc(100vw + 300px)); }
+        }
+
+        .grass {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 20vh;
+            background: var(--grass-green);
+        }
+
+        .tree {
+            position: absolute;
+            bottom: 18vh;
+            width: 40px;
+            height: 60px;
+            background: #8d6e63;
+            border-radius: 5px;
+        }
+
+        .tree::before {
+            content: '';
+            position: absolute;
+            bottom: 40px;
+            left: -30px;
+            width: 100px;
+            height: 100px;
+            background: #74c69d;
+            border-radius: 50%;
+            animation: sway 3s ease-in-out infinite;
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+        }
+
+        /* 內容卡片樣式 */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            border: 4px solid var(--accent-pink);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .btn-cute {
+            background-color: var(--accent-pink);
+            color: white;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-bottom: 5px solid #ff85a1;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-cute:hover {
+            transform: scale(1.05) translateY(-2px);
+            background-color: #ff8fab;
+        }
+
+        .btn-cute:active {
+            transform: translateY(2px);
+            border-bottom-width: 0px;
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8 flex flex-col items-center">
+
+    <!-- 動態背景元件 -->
+    <div class="background-container">
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        <div class="cloud cloud-3"></div>
+        <div class="tree" style="left: 10%;"></div>
+        <div class="tree" style="right: 15%; animation-delay: 1s;"></div>
+        <div class="grass"></div>
+    </div>
+
+    <!-- 主標題區 -->
+    <header class="text-center mt-10 mb-12">
+        <h1 class="special-font text-5xl md:text-7xl text-white drop-shadow-lg mb-4 floating">
+            空氣小管家 ✨
+        </h1>
+        <p class="text-white text-xl bg-blue-400 bg-opacity-50 px-6 py-2 rounded-full inline-block">
+            —— 高中生活科技期末專題 ——
+        </p>
+    </header>
+
+    <main class="max-w-4xl w-full space-y-12 mb-20">
+        
+        <!-- 專題介紹區 -->
+        <section class="glass-card p-8 md:p-12">
+            <h2 class="special-font text-3xl text-pink-500 mb-6 flex items-center">
+                <span class="mr-2">📝</span> 專題動機與目的
+            </h2>
+            <div class="text-gray-700 leading-relaxed space-y-4 text-lg">
+                <p>
+                    你是否曾經在出門後才發現天空灰濛濛的，喉嚨開始感到不適？隨著環境變遷，空氣品質（AQI）已成為我們日常健康的重要指標。
+                </p>
+                <p>
+                    本專題旨在開發一套簡易、可愛且直覺的檢查工具，讓高中生與家人能在出門前，透過電腦快速獲取當前的空氣資訊。我們希望透過這個程式，提醒大家在空氣品質不佳時記得配戴口罩，守護大家的呼吸道健康！
+                </p>
+            </div>
+        </section>
+
+        <!-- 專案功能特色 -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="glass-card p-6 text-center hover:bg-pink-50 transition-colors">
+                <div class="text-5xl mb-4">🌬️</div>
+                <h3 class="font-bold text-xl mb-2">即時監測</h3>
+                <p class="text-gray-600">快速抓取所在地區最新的空氣品質數值。</p>
+            </div>
+            <div class="glass-card p-6 text-center hover:bg-pink-50 transition-colors">
+                <div class="text-5xl mb-4">🎨</div>
+                <h3 class="font-bold text-xl mb-2">視覺警示</h3>
+                <p class="text-gray-600">根據不同數值變換背景色彩，一眼看出危險性。</p>
+            </div>
+            <div class="glass-card p-6 text-center hover:bg-pink-50 transition-colors">
+                <div class="text-5xl mb-4">🏠</div>
+                <h3 class="font-bold text-xl mb-2">出門建議</h3>
+                <p class="text-gray-600">給予是否需要口罩或減少戶外活動的貼心叮嚀。</p>
+            </div>
+        </section>
+
+        <!-- 執行檔下載區 -->
+        <section class="glass-card p-10 text-center">
+            <h2 class="special-font text-3xl text-blue-500 mb-6">
+                🚀 專案執行與下載
+            </h2>
+            <p class="text-gray-600 mb-8">
+                點擊下方按鈕即可下載本專案的執行檔案 (111.exe)，<br>
+                在 Windows 系統上開啟後即可開始使用空氣檢查功能。
+            </p>
+            
+            <!-- 加入 download 屬性與 JS 下載處理 -->
+            <a href="111.exe" id="downloadBtn" download="111.exe" class="btn-cute px-12 py-5 rounded-2xl text-2xl font-bold inline-block cursor-pointer">
+                下載專案執行檔 (.exe)
+            </a>
+
+            <div id="statusMessage" class="mt-4 text-pink-500 font-bold hidden">
+                <div class="bg-pink-100 p-4 rounded-xl border-2 border-pink-200">
+                    已嘗試啟動下載！請檢查瀏覽器下方或右上角的下載紀錄。<br>
+                    <span class="text-sm text-gray-500 font-normal mt-2 block">
+                        💡 貼心提醒：若出現「不安全檔案」警告，是因為 .exe 為程式檔，請選擇「保留」即可。
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 專題心得 -->
+        <section class="glass-card p-8">
+            <h2 class="special-font text-3xl text-pink-500 mb-6">
+                💭 製作心得
+            </h2>
+            <p class="text-gray-700 italic">
+                「在這次的專題開發中，我們學會了如何整合外部 API 資料並設計出友善的使用者介面。雖然過程中遇到許多 Debug 的挑戰，但看到程式成功執行的那一刻，真的非常有成就感！」
+            </p>
+        </section>
+
+    </main>
+
+    <footer class="w-full text-center py-10 text-white">
+        <p>© 2024 高中生空氣檢查小組 版權所有</p>
+        <p class="text-sm mt-2">使用 HTML/CSS 與 熱情 製作</p>
+    </footer>
+
+    <script>
+        const downloadBtn = document.getElementById('downloadBtn');
+        const statusMessage = document.getElementById('statusMessage');
+
+        downloadBtn.addEventListener('click', (e) => {
+            // 顯示下載提示訊息
+            statusMessage.classList.remove('hidden');
+            
+            // 由於部分環境會阻擋點擊下載，我們用程式觸發備用方案
+            const fileUrl = downloadBtn.getAttribute('href');
+            
+            // 如果是在預覽環境中，這可以幫助繞過某些限制
+            setTimeout(() => {
+                const link = document.createElement('a');
+                link.href = fileUrl;
+                link.download = '111.exe';
+                link.target = '_blank'; // 有助於在某些框架中觸發下載
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }, 100);
+        });
+
+        // 隨機增加一些小花朵在草地上
+        window.onload = function() {
+            const grass = document.querySelector('.grass');
+            if (grass) {
+                for(let i=0; i<15; i++) {
+                    const flower = document.createElement('div');
+                    flower.style.position = 'absolute';
+                    flower.style.bottom = Math.random() * 80 + 'px';
+                    flower.style.left = Math.random() * 100 + '%';
+                    flower.innerHTML = i % 2 === 0 ? '🌸' : '🌼';
+                    flower.style.fontSize = (Math.random() * 10 + 10) + 'px';
+                    flower.style.opacity = '0.7';
+                    flower.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    grass.appendChild(flower);
+                }
+            }
+        };
+    </script>
+</body>
+</html>
